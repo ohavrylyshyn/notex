@@ -1,0 +1,48 @@
+{
+    "name": "notex",
+    "productName": "Notex",
+    "version": "1.0.0",
+    "description": "Simple note application with desktop pin functionality",
+    "main": "main.js",
+    "scripts": {
+        "postinstall": "electron-rebuild -f -w sqlite3",
+        "start": "electron .",
+        "dev": "electronmon .",
+        "pack": "electron-builder --dir",
+        "dist": "electron-builder"
+    },
+    "keywords": [
+        "notes",
+        "notex",
+        "desktop"
+    ],
+    "author": "",
+    "license": "MIT",
+    "devDependencies": {
+        "electron": "40.0.0",
+        "electron-builder": "24.13.3",
+        "electron-rebuild": "^3.2.9",
+        "electronmon": "2.0.4"
+    },
+    "dependencies": {
+        "electron-store": "8.1.0",
+        "sqlite3": "5.1.7"
+    },
+    "build": {
+        "appId": "com.notex.app",
+        "productName": "Notex",
+        "directories": {
+            "output": "release"
+        },
+        "win": {
+            "target": [
+                "nsis"
+            ],
+            "icon": "assets/icon.ico"
+        },
+        "nsis": {
+            "oneClick": false,
+            "allowToChangeInstallationDirectory": true
+        }
+    }
+}

@@ -1,0 +1,150 @@
+<!doctype html>
+<html>
+
+<head>
+    <meta charset="UTF-8" />
+    <title>Нотатки</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@mdi/font@7.2.96/css/materialdesignicons.min.css" />
+    <link rel="stylesheet" href="styles.css" />
+</head>
+
+<body>
+    <div class="window">
+        <div class="header">
+            <div class="drag-area">
+                <div class="title">
+                    <img class="app-icon" src="assets/icon.ico" />
+                    <span class="app-name">NoteX</span>
+                </div>
+            </div>
+            <div class="controls">
+                <button id="minBtn" class="btn btn-min" data-i18n-title="minimize">
+                    −
+                </button>
+                <button id="closeBtn" class="btn btn-close" data-i18n-title="close">
+                    ✕
+                </button>
+                <button id="pinBtn" class="btn btn-pin" data-i18n-title="pin">
+                    <i class="mdi mdi-pin-outline"></i>
+                </button>
+            </div>
+        </div>
+
+        <!-- Note textarea -->
+        <div id="noteText" class="notepad" contenteditable="true" data-i18n-placeholder="placeholder"></div>
+
+        <!-- Settings view (hidden by default) -->
+        <div id="settingsView" class="settings hidden">
+            <div class="settings-header">
+                <div class="settings-title" data-i18n="settings"></div>
+                <button id="settingsBackBtn" class="toolbar-btn" data-i18n-title="back">
+                    <i class="mdi mdi-arrow-left"></i>
+                </button>
+            </div>
+
+            <div class="settings-body">
+                <!-- Language selection -->
+                <div class="settings-row">
+                    <label class="settings-label" data-i18n="language"></label>
+                    <div class="lang-buttons">
+                        <button id="langUkBtn" class="toolbar-btn" type="button">УКР</button>
+                        <button id="langEnBtn" class="toolbar-btn" type="button">ENG</button>
+                    </div>
+                </div>
+
+                <!-- Hotkeys section title -->
+                <div class="settings-row settings-row-title">
+                    <label class="settings-label" data-i18n="hotkeys"></label>
+                    <div></div>
+                </div>
+                
+                <!-- Pin shortcut -->
+                <div class="settings-row">
+                    <label class="settings-label" data-i18n="hotkey_pin_label"></label>
+                    <div class="hotkey-control">
+                        <span class="hotkey-badge" id="lockBadge" data-i18n="press_keys"></span>
+                        <input id="lockShortcut" class="settings-select hotkey-input" type="text" readonly placeholder="Ctrl+Shift+P" />
+                    </div>
+                </div>
+                
+                <!-- Unpin shortcut -->
+                <div class="settings-row">
+                    <label class="settings-label" data-i18n="hotkey_unpin_label"></label>
+                    <div class="hotkey-control">
+                        <span class="hotkey-badge" id="unlockBadge" data-i18n="press_keys"></span>
+                        <input id="unlockShortcut" class="settings-select hotkey-input" type="text" readonly placeholder="Ctrl+Shift+U" />
+                    </div>
+                </div>
+                
+                <!-- Reset row -->
+                <div class="settings-row">
+                    <label class="settings-label" data-i18n="hotkeys_reset_label"></label>
+                    <div class="hotkey-actions">
+                        <button id="resetShortcutsBtn" class="toolbar-btn reset-btn" type="button" data-i18n="reset_to_default"></button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- About view (hidden by default) -->
+        <div id="aboutView" class="about hidden">
+            <div class="about-header">
+                <div class="about-title" data-i18n="about"></div>
+                <button id="aboutBackBtn" class="toolbar-btn" data-i18n-title="back">
+                    <i class="mdi mdi-arrow-left"></i>
+                </button>
+            </div>
+
+            <div class="about-body">
+                <p class="about-text" data-i18n="about_intro"></p>
+                <div class="about-section">
+                    <div class="about-subtitle" data-i18n="about_features_title"></div>
+                    <ul class="about-list" id="aboutFeatures"></ul>
+                </div>
+                <div class="about-section">
+                    <div class="about-subtitle" data-i18n="about_differences_title"></div>
+                    <ul class="about-list" id="aboutDifferences"></ul>
+                </div>
+                <div class="about-section">
+                    <div class="about-subtitle" data-i18n="about_links_title"></div>
+                    <a class="about-link" href="https://github.com/ohavrylyshyn" target="_blank" rel="noreferrer" data-i18n="about_github_link"></a>
+                </div>
+            </div>
+        </div>
+
+        <div class="unlock-hint" id="unlockHint" data-i18n="unlock_hint"></div>
+        <div class="toolbar">
+            <button id="boldBtn" class="toolbar-btn" data-i18n-title="bold">
+                <strong>B</strong>
+            </button>
+            <button id="italicBtn" class="toolbar-btn" data-i18n-title="italic">
+                <em>I</em>
+            </button>
+            <button id="underlineBtn" class="toolbar-btn" data-i18n-title="underline">
+                <u>U</u>
+            </button>
+            <button id="strikeBtn" class="toolbar-btn" data-i18n-title="strike">
+                <s>S</s>
+            </button>
+            <div class="toolbar-separator"></div>
+            <button id="listBtn" class="toolbar-btn" data-i18n-title="list">
+                ≡
+            </button>
+
+            <!-- Move the button to the right -->
+            <div class="toolbar-spacer"></div>
+
+            <button id="aboutBtn" class="toolbar-btn" data-i18n-title="about">
+                <i class="mdi mdi-github"></i>
+            </button>
+
+            <!-- Place the Settings button on the right -->
+            <button id="settingsBtn" class="toolbar-btn" data-i18n-title="settings">
+                <i class="mdi mdi-cog-outline"></i>
+            </button>
+        </div>
+    </div>
+    <script src="renderer.js"></script>
+</body>
+
+</html>

@@ -1,0 +1,16 @@
+docs-private
+node_modules
+release
+dist
+out
+
+.env
+*.log
+
+notex.db
+.backup-notex.db
+
+.idea
+.vscode
+.DS_Store
+Thumbs.db

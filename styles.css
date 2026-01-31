@@ -1,0 +1,453 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+    overflow: hidden;
+    -webkit-user-select: none;
+    user-select: none;
+}
+
+.window {
+    width: 100%;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    background-color: #fff7d1;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.3);
+    border-radius: 12px;
+    overflow: hidden;
+}
+
+.header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background-color: #fff2ab;
+    padding: 0;
+    height: 32px;
+    -webkit-app-region: drag;
+}
+
+.drag-area {
+    flex: 1;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    -webkit-app-region: drag;
+    cursor: grab;
+    padding-left: 10px;
+}
+
+.drag-area:active {
+    cursor: grabbing;
+}
+
+.controls {
+    display: flex;
+    justify-content: flex-end;
+    gap: 4px;
+    padding: 4px 6px;
+    -webkit-app-region: no-drag;
+    flex-shrink: 0;
+}
+
+.title {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    flex-shrink: 0;
+    font-size: 14px;
+    font-weight: 700;
+    letter-spacing: 1px;
+    user-select: none;
+    color: #444;
+    gap: 6px;
+}
+
+.app-icon {
+    width: 16px;
+    height: 16px;
+    display: block;
+}
+
+.app-name {
+    line-height: 1;
+}
+
+.btn {
+    width: 28px;
+    height: 28px;
+    border: none;
+    background-color: transparent;
+    cursor: pointer;
+    font-size: 14px;
+    border-radius: 4px;
+    transition: all 0.2s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #666;
+    opacity: 0.6;
+}
+
+.btn:hover {
+    opacity: 1;
+    background-color: rgba(0, 0, 0, 0.08);
+}
+
+.btn:active {
+    background-color: rgba(0, 0, 0, 0.15);
+    transform: scale(0.95);
+}
+
+.btn-close:hover {
+    background-color: #ff6b6b;
+    color: white;
+    opacity: 1;
+}
+
+.btn-pin.pinned {
+    background-color: #ff9800;
+    color: white;
+    opacity: 1;
+}
+
+.notepad {
+    flex: 1;
+    border: none;
+    padding: 12px;
+    background-color: #fff7d1;
+    color: #333;
+    font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+    font-size: 14px;
+    line-height: 1.6;
+    resize: none;
+    outline: none;
+    -webkit-user-select: text;
+    user-select: text;
+    overflow-y: auto;
+    word-wrap: break-word;
+}
+
+.notepad:empty:before {
+    content: attr(placeholder);
+    color: rgba(51, 51, 51, 0.4);
+    pointer-events: none;
+}
+
+.notepad ul,
+.notepad ol {
+    margin: 0 0 0 20px;
+    padding-left: 20px;
+}
+
+.notepad::placeholder {
+    color: rgba(0, 0, 0, 0.4);
+}
+
+/* Scrollbar styling */
+.notepad::-webkit-scrollbar {
+    width: 8px;
+}
+
+.notepad::-webkit-scrollbar-track {
+    background-color: #fff7d1;
+}
+
+.notepad::-webkit-scrollbar-thumb {
+    background-color: rgba(0, 0, 0, 0.2);
+    border-radius: 4px;
+}
+
+.notepad::-webkit-scrollbar-thumb:hover {
+    background-color: rgba(0, 0, 0, 0.3);
+}
+
+/* Windows scrollbar */
+.notepad {
+    scrollbar-color: rgba(0, 0, 0, 0.2) #fff7d1;
+    scrollbar-width: thin;
+}
+
+.unlock-hint {
+    padding: 8px 12px;
+    background-color: #fff7d1;
+    color: rgba(0, 0, 0, 0.5);
+    font-size: 12px;
+    text-align: center;
+    border-top: 1px solid rgba(0, 0, 0, 0.1);
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    pointer-events: none;
+}
+
+.unlock-hint.visible {
+    opacity: 1;
+}
+
+/* System messages in bottom hint */
+.unlock-hint.system {
+    opacity: 1;
+    /* Show it even when it’s not pinned */
+    pointer-events: none;
+}
+
+.unlock-hint.is-error {
+    color: rgba(180, 0, 0, 0.85);
+}
+
+.unlock-hint.is-success {
+    color: rgba(0, 110, 0, 0.75);
+}
+
+.unlock-hint.is-info {
+    color: rgba(0, 0, 0, 0.55);
+}
+
+.toolbar {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    padding: 6px 8px;
+    background-color: #fff7d1;
+    border-top: 1px solid rgba(0, 0, 0, 0.1);
+    -webkit-app-region: no-drag;
+}
+
+.toolbar-btn {
+    width: 32px;
+    height: 28px;
+    border: none;
+    background-color: transparent;
+    cursor: pointer;
+    font-size: 13px;
+    border-radius: 4px;
+    transition: all 0.2s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #333;
+    font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.toolbar-btn:hover {
+    background-color: rgba(0, 0, 0, 0.08);
+}
+
+.toolbar-btn:active {
+    background-color: rgba(0, 0, 0, 0.15);
+    transform: scale(0.95);
+}
+
+.toolbar-btn.active {
+    background-color: #fff2ab;
+}
+
+.toolbar-separator {
+    width: 1px;
+    height: 20px;
+    background-color: rgba(0, 0, 0, 0.1);
+    margin: 0 2px;
+}
+
+.hidden {
+    display: none !important;
+}
+
+.toolbar-spacer {
+    flex: 1;
+}
+
+/* Settings view */
+.settings {
+    flex: 1;
+    padding: 12px;
+    background-color: #fff7d1;
+    color: #333;
+    overflow-y: auto;
+    -webkit-user-select: text;
+    user-select: text;
+}
+
+.settings-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 10px;
+}
+
+.settings-title {
+    font-size: 14px;
+    font-weight: 700;
+    letter-spacing: 0.5px;
+}
+
+.settings-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+    padding: 10px 0;
+    border-top: 1px solid rgba(0, 0, 0, 0.08);
+}
+
+.settings-label {
+    font-size: 13px;
+    color: #333;
+    opacity: 0.85;
+}
+
+.settings-select {
+    height: 28px;
+    padding: 0 8px;
+    border-radius: 6px;
+    border: 1px solid rgba(0, 0, 0, 0.15);
+    background: rgba(255, 255, 255, 0.6);
+    outline: none;
+}
+
+.lang-buttons {
+    display: flex;
+    gap: 6px;
+    -webkit-app-region: no-drag;
+}
+
+/* Hotkeys settings */
+.settings-row-title {
+    padding-bottom: 6px;
+}
+
+.hotkey-control {
+    width: 210px;
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    position: relative;
+}
+
+.hotkey-input {
+    width: 100%;
+    height: 28px;
+    border-radius: 6px;
+}
+
+.hotkey-input.invalid {
+    border-color: rgba(255, 0, 0, 0.35);
+    background: rgba(255, 0, 0, 0.06);
+}
+
+.hotkey-badge {
+    position: absolute;
+    top: -18px;
+    right: 0;
+    font-size: 11px;
+    padding: 2px 8px;
+    border-radius: 999px;
+    background: rgba(0, 0, 0, 0.08);
+    opacity: 0;
+    transform: translateY(-2px);
+    transition: opacity 0.15s ease, transform 0.15s ease;
+    pointer-events: none;
+}
+
+.hotkey-badge.visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.hotkey-error {
+    min-height: 14px;
+    font-size: 11px;
+    color: rgba(180, 0, 0, 0.85);
+}
+
+.hotkey-actions {
+    width: 210px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 10px;
+}
+
+.reset-btn {
+    width: auto;
+    padding: 0 10px;
+    border-radius: 8px;
+    border: 1px solid rgba(0, 0, 0, 0.14);
+    background: rgba(255, 242, 171, 0.9);
+    font-size: 12px;
+    height: 28px;
+}
+
+.reset-btn:hover {
+    background: rgba(255, 242, 171, 1);
+}
+
+.hotkey-status {
+    font-size: 11px;
+    opacity: 0.7;
+    white-space: nowrap;
+}
+
+/* About view */
+.about {
+    flex: 1;
+    padding: 12px;
+    background-color: #fff7d1;
+    color: #333;
+    overflow-y: auto;
+    -webkit-user-select: text;
+    user-select: text;
+}
+
+.about-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 10px;
+}
+
+.about-title {
+    font-size: 14px;
+    font-weight: 700;
+    letter-spacing: 0.5px;
+}
+
+.about-body {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    font-size: 13px;
+    line-height: 1.6;
+}
+
+.about-section {
+    padding-top: 10px;
+    border-top: 1px solid rgba(0, 0, 0, 0.08);
+}
+
+.about-subtitle {
+    font-weight: 700;
+    margin-bottom: 6px;
+}
+
+.about-list {
+    padding-left: 18px;
+}
+
+.about-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    color: #2b5db0;
+    text-decoration: none;
+    font-weight: 600;
+}
+
+.about-link:hover {
+    text-decoration: underline;
+}
