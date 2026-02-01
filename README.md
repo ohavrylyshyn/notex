@@ -97,6 +97,16 @@ npm start
 Ideas, bug reports, and pull requests are welcome.
 Feel free to open an issue or submit a PR.
 
+See [CONTRIBUTING.md](./CONTRIBUTING.md) for details.
+
+## Contribution Policy
+
+We do not accept contributions from individuals or organizations
+affiliated with the Russian Federation or those supporting Russia's war against Ukraine.
+
+All contributions are subject to manual review.
+Maintainers reserve the right to reject any contribution without explanation.
+
 ## License
 
 Apache 2.0
